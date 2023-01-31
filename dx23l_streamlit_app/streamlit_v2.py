@@ -33,6 +33,9 @@ import hydralit_components as hc
 from hydralit import HydraHeadApp
 from hydralit_components import HyLoader, Loaders
 
+@st.experimental_singleton
+@st.experimental_memo
+
 class Dashboard:
 
     DRAGGABLE_CLASS = "draggable"
