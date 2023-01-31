@@ -244,6 +244,7 @@ with options:
 ########################################### draggable class #######################################
 #if one == True:
 @app.addapp()
+@st.experimental_memo
 def Executive_Summary():
     
     st.subheader("What are the key Patient Segments and corresponding distribution?")
@@ -370,6 +371,7 @@ def Executive_Summary():
 
 
 @app.addapp()
+@st.experimental_memo
 def Archetype_Journey():
     # ------------------------------------adding bubble chart-----------------------------------------------------------------
     st.subheader("How does the timing of key events differ by archetype ?")
@@ -614,6 +616,7 @@ def Archetype_Journey():
 ################################################ page 2 ###################################################
 #elif two == True:
 @app.addapp()
+@st.experimental_memo
 def Archetype_Profile():
     
     st.header("Customer Insights")
