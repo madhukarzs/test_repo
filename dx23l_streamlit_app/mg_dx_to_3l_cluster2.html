@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<style>
+#tooltip {
+    position: relative;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 4px;		
+    border-radius: 10px;			
+    pointer-events: none;	
+}
+</style>
+</head>
+
+<body>
+<script src="//d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+<script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+<div id="graph" style="text-align: center;"  width=800px height=500px></div>
+
+<script>
+
+var dotSrc = `
+digraph {
+ ratio="ideal";
+ size="22,1.6!";
+ 
+    graph [labelloc="t",width=4,fontsize="20.0",rankdir="LR",bgcolor="white",height=100]
+
+	node [color=lightblue2 style=filled]
+	rankdir=LR
+	node [shape=doublecircle]
+	"Start Event" [color="#3EAACD"]
+	"End Event" [color="#3EAACD"]
+	node [shape=box]
+	Ivig [color="#E5C457",tooltip="Number of Patients: 36\n\nMost Prevalent Specialty: NEUROLOGY"]
+	" Eye Disorders" [color="#EA7200",tooltip="Number of Patients: 5\n\nMost Prevalent Specialty: OPHTHALMOLOGY"]
+	"Ophthalmologic And Otologic Diagnosis And Treatment" [color="#32A29A",tooltip="Number of Patients: 53\n\nMost Prevalent Specialty: OPHTHALMOLOGY"]
+	"Nonspecific Chest Pain" [color="#EA7200",tooltip="Number of Patients: 20\n\nMost Prevalent Specialty: EMERGENCY MEDICINE"]
+	"Codeine And Combinations Non Injectable" [color="#E5C457",tooltip="Number of Patients: 69\n\nMost Prevalent Specialty: INTERNAL MEDICINE"]
+	"Myasthenia Gravis Without Acute Exacerbation" [color="#EA7200",tooltip="Number of Patients: 174\n\nMost Prevalent Specialty: NEUROLOGY"]
+	" Connective Tissue Disease" [color="#EA7200",tooltip="Number of Patients: 46\n\nMost Prevalent Specialty: RHEUMATOLOGIST"]
+	"Angiotensin Ii Antagonist Alone" [color="#E5C457",tooltip="Number of Patients: 58\n\nMost Prevalent Specialty: PCP"]
+	"Routine Chest X Ray" [color="#32A29A",tooltip="Number of Patients: 35\n\nMost Prevalent Specialty: RADIOLOGIST"]
+	"Proton Pump Inhibitors" [color="#E5C457" ,tooltip="Number of Patients: 229\n\nMost Prevalent Specialty: PCP"]
+	node [shape=egg]
+	"Start Event" -> "Proton Pump Inhibitors" [color=lightblue]
+	"Proton Pump Inhibitors" -> "Routine Chest X Ray" [color=lightblue]
+	"Routine Chest X Ray" -> " Eye Disorders" [color=lightblue]
+	" Eye Disorders" -> "Angiotensin Ii Antagonist Alone" [color=lightblue]
+	"Angiotensin Ii Antagonist Alone" -> "Ophthalmologic And Otologic Diagnosis And Treatment" [color=lightblue]
+	"Ophthalmologic And Otologic Diagnosis And Treatment" -> "Nonspecific Chest Pain" [color=lightblue]
+	"Nonspecific Chest Pain" -> "Codeine And Combinations Non Injectable" [color=lightblue]
+	"Codeine And Combinations Non Injectable" -> " Connective Tissue Disease" [color=lightblue]
+	" Connective Tissue Disease" -> Ivig [color=lightblue]
+	Ivig -> Ivig [color=lightblue]
+	Ivig -> "Myasthenia Gravis Without Acute Exacerbation" [color=lightblue]
+	"Myasthenia Gravis Without Acute Exacerbation" -> "End Event" [color=lightblue]
+}
+`;
+
+var dotSrcLines;
+
+var graph_check = d3.select("#graph")
+
+var code = graph_check.graphviz();
+
+function render() {
+    console.log('DOT source =', dotSrc);	
+	code.renderDot(dotSrc);
+}
+
+render(dotSrc);
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<style>
+#tooltip {
+    position: relative;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 4px;		
+    border-radius: 10px;			
+    pointer-events: none;	
+}
+</style>
+</head>
+
+<body>
+<script src="//d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+<script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+<div id="graph" style="text-align: center;"  width=1800px height=1500px></div>
+
+<script>
+
+var dotSrc = `
+digraph {
+ ratio="ideal";
+ size="40,1.5!";
+ 
+    graph [labelloc="t",width=1000,fontsize="40.0",rankdir="LR",bgcolor="white",height=10000]
+
+	node [color=lightblue2 style=filled]
+	rankdir=LR
+	node [shape=doublecircle]
+	"Start Event" [color="#3EAACD"]
+	"End Event" [color="#3EAACD"]
+	node [shape=box]
+	"Dme And Supplies" [color="#32A29A", tooltip="Number of Patients: 245\n\nMost Prevalent Specialty: NP"]
+	"Hormones Corticoids Plain Dermatological" [color="#E5C457", tooltip="Number of Patients: 86\n\nMost Prevalent Specialty: ENDOCRINOLOGIST"]
+	" Diagnostic Procedures On Lung And Bronchus" [color="#32A29A", tooltip="Number of Patients: 27\n\nMost Prevalent Specialty: PULMONARY MEDICINE"]
+	" Nutritional Endocrine And Metabolic Disorders" [color="#EA7200", tooltip="Number of Patients: 205\n\nMost Prevalent Specialty: ENDOCRINOLOGIST"]
+	"Deficiency And  Anemia" [color="#EA7200", tooltip="Number of Patients: 129\n\nMost Prevalent Specialty: HEMATOLOGIST"]
+	"Myasthenia Gravis Without Acute Exacerbation" [color="#EA7200", tooltip="Number of Patients: 756\n\nMost Prevalent Specialty: NEUROLOGY"]
+	" And Unspecified Benign Neoplasm" [color="#EA7200", tooltip="Number of Patients: 64\n\nMost Prevalent Specialty: RADIOLOGIST"]
+	"Myasthenia Gravis With Acute Exacerbation" [color="#EA7200", tooltip="Number of Patients: 189\n\nMost Prevalent Specialty: NEUROLOGY"]
+	"Genitourinary Symptoms And Ill Defined Conditions" [color="#EA7200", tooltip="Number of Patients: 87\n\nMost Prevalent Specialty: ENDOCRINOLOGIST"]
+	"Immunosuppresive Transplant Agents" [color="#E5C457", tooltip="Number of Patients: 266\n\nMost Prevalent Specialty: NEUROLOGY"]
+	"Codeine And Combinations Non Injectable" [color="#E5C457", tooltip="Number of Patients: 223\n\nMost Prevalent Specialty: INTERNAL MEDICINE"]
+	"Thyroid Hormone Synthetic" [color="#E5C457", tooltip="Number of Patients: 271\n\nMost Prevalent Specialty: PCP"]
+	node [shape=egg]
+	"Start Event" -> "Myasthenia Gravis Without Acute Exacerbation" [color=lightblue]
+	"Myasthenia Gravis Without Acute Exacerbation" -> "Genitourinary Symptoms And Ill Defined Conditions" [color=lightblue]
+	"Genitourinary Symptoms And Ill Defined Conditions" -> " And Unspecified Benign Neoplasm" [color=lightblue]
+	" And Unspecified Benign Neoplasm" -> "Myasthenia Gravis Without Acute Exacerbation" [color=lightblue]
+	"Myasthenia Gravis Without Acute Exacerbation" -> "Thyroid Hormone Synthetic" [color=lightblue]
+	"Thyroid Hormone Synthetic" -> "Thyroid Hormone Synthetic" [color=lightblue]
+	"Thyroid Hormone Synthetic" -> "Deficiency And  Anemia" [color=lightblue]
+	"Deficiency And  Anemia" -> "Hormones Corticoids Plain Dermatological" [color=lightblue]
+	"Hormones Corticoids Plain Dermatological" -> " Nutritional Endocrine And Metabolic Disorders" [color=lightblue]
+	" Nutritional Endocrine And Metabolic Disorders" -> "Codeine And Combinations Non Injectable" [color=lightblue]
+	"Codeine And Combinations Non Injectable" -> " Nutritional Endocrine And Metabolic Disorders" [color=lightblue]
+	" Nutritional Endocrine And Metabolic Disorders" -> "Myasthenia Gravis With Acute Exacerbation" [color=lightblue]
+	"Myasthenia Gravis With Acute Exacerbation" -> "Dme And Supplies" [color=lightblue]
+	"Dme And Supplies" -> " Diagnostic Procedures On Lung And Bronchus" [color=lightblue]
+	" Diagnostic Procedures On Lung And Bronchus" -> "Immunosuppresive Transplant Agents" [color=lightblue]
+	"Immunosuppresive Transplant Agents" -> "End Event" [color=lightblue]
+}
+`;
+
+var dotSrcLines;
+
+var graph_check = d3.select("#graph")
+
+var code = graph_check.graphviz();
+
+function render() {
+    console.log('DOT source =', dotSrc);	
+	code.renderDot(dotSrc);
+}
+
+render(dotSrc);
+</script>
+</body>
+</html>
