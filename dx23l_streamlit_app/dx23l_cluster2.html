@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "circle", "opacity": 0.2, "size": 1000}, "encoding": {"color": {"field": "claim_type", "type": "nominal"}, "tooltip": [{"field": "cluster2_prev%", "type": "quantitative"}, {"field": "event_name", "type": "nominal"}], "x": {"field": "cluster2_days", "type": "nominal"}, "y": {"field": "event_name", "type": "nominal"}}, "height": 500, "width": 700}, {"mark": {"type": "text", "color": "black", "dx": 1, "fontSize": 15}, "encoding": {"color": {"field": "claim_type", "type": "nominal"}, "text": {"field": "cluster2_prev%", "type": "quantitative"}, "tooltip": [{"field": "cluster2_prev%", "type": "quantitative"}, {"field": "event_name", "type": "nominal"}], "x": {"field": "cluster2_days", "type": "nominal"}, "y": {"field": "event_name", "type": "nominal"}}, "height": 500, "width": 700}, {"mark": {"type": "text", "align": "left", "dx": -20, "dy": -20}, "encoding": {"color": {"field": "claim_type", "type": "nominal"}, "text": {"field": "event_name", "type": "nominal"}, "tooltip": [{"field": "cluster2_prev%", "type": "quantitative"}, {"field": "event_name", "type": "nominal"}], "x": {"field": "cluster2_days", "type": "nominal"}, "y": {"field": "event_name", "type": "nominal"}}, "height": 500, "width": 700}], "data": {"name": "data-3f7aa0e3dec869b5230e7d7ed3a64e0d"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-3f7aa0e3dec869b5230e7d7ed3a64e0d": [{"claim_type": "DX", "event_name": "Dx Cardiac Disorders", "cluster2_days": "215", "cluster2_prev": 417, "total_patients": 1198, "cluster2_prev%": 34.8}, {"claim_type": "DX", "event_name": "Dx Diabetes", "cluster2_days": "203", "cluster2_prev": 489, "total_patients": 1198, "cluster2_prev%": 40.8}, {"claim_type": "DX", "event_name": "Dx Difficulty In Breathing", "cluster2_days": "194", "cluster2_prev": 552, "total_patients": 1198, "cluster2_prev%": 46.1}, {"claim_type": "DX", "event_name": "Dx Essential Hypertension", "cluster2_days": "196", "cluster2_prev": 704, "total_patients": 1198, "cluster2_prev%": 58.8}, {"claim_type": "DX", "event_name": "Dx Myasthenia Gravis With Acute Exacerbation", "cluster2_days": "216", "cluster2_prev": 559, "total_patients": 1198, "cluster2_prev%": 46.7}, {"claim_type": "DX", "event_name": "Dx Myasthenia Gravis Without Acute Exacerbation", "cluster2_days": "224", "cluster2_prev": 996, "total_patients": 1198, "cluster2_prev%": 83.1}, {"claim_type": "DX", "event_name": "Dx Other Connective Tissue Disease", "cluster2_days": "212", "cluster2_prev": 643, "total_patients": 1198, "cluster2_prev%": 53.7}, {"claim_type": "DX", "event_name": "Dx Other Nervous System Disorders", "cluster2_days": "164", "cluster2_prev": 890, "total_patients": 1198, "cluster2_prev%": 74.3}, {"claim_type": "DX", "event_name": "Dx Other Nutritional Endocrine And Metabolic Disorders", "cluster2_days": "210", "cluster2_prev": 577, "total_patients": 1198, "cluster2_prev%": 48.2}, {"claim_type": "DX", "event_name": "Dx Respiratory Disorders", "cluster2_days": "198", "cluster2_prev": 652, "total_patients": 1198, "cluster2_prev%": 54.4}, {"claim_type": "PX", "event_name": "Px Other Therapeutic Procedures", "cluster2_days": "208", "cluster2_prev": 802, "total_patients": 1198, "cluster2_prev%": 66.9}, {"claim_type": "PX", "event_name": "Px Other Laboratory", "cluster2_days": "208", "cluster2_prev": 912, "total_patients": 1198, "cluster2_prev%": 76.1}, {"claim_type": "PX", "event_name": "Px Imaging Test", "cluster2_days": "199", "cluster2_prev": 972, "total_patients": 1198, "cluster2_prev%": 81.1}, {"claim_type": "PX", "event_name": "Px Er Visit", "cluster2_days": "202", "cluster2_prev": 590, "total_patients": 1198, "cluster2_prev%": 49.2}, {"claim_type": "PX", "event_name": "Px Laboratory Chemistry And Hematology", "cluster2_days": "210", "cluster2_prev": 986, "total_patients": 1198, "cluster2_prev%": 82.3}, {"claim_type": "RX", "event_name": "Rx Proton Pump Inhibitors", "cluster2_days": "215", "cluster2_prev": 646, "total_patients": 1198, "cluster2_prev%": 53.9}, {"claim_type": "RX", "event_name": "Rx Ache", "cluster2_days": "205", "cluster2_prev": 1097, "total_patients": 1198, "cluster2_prev%": 91.6}, {"claim_type": "RX", "event_name": "Rx Codeine And Combinations Non Injectable", "cluster2_days": "228", "cluster2_prev": 653, "total_patients": 1198, "cluster2_prev%": 54.5}, {"claim_type": "RX", "event_name": "Rx Hmg Coa Reductase Inhibitors", "cluster2_days": "223", "cluster2_prev": 464, "total_patients": 1198, "cluster2_prev%": 38.7}, {"claim_type": "RX", "event_name": "Rx Immunosuppresive Transplant Agents", "cluster2_days": "217", "cluster2_prev": 698, "total_patients": 1198, "cluster2_prev%": 58.3}, {"claim_type": "RX", "event_name": "Rx Ivig", "cluster2_days": "217", "cluster2_prev": 473, "total_patients": 1198, "cluster2_prev%": 39.5}, {"claim_type": "RX", "event_name": "Rx Ivigscig", "cluster2_days": "221", "cluster2_prev": 481, "total_patients": 1198, "cluster2_prev%": 40.2}, {"claim_type": "RX", "event_name": "Rx Steroids", "cluster2_days": "213", "cluster2_prev": 899, "total_patients": 1198, "cluster2_prev%": 75.0}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
